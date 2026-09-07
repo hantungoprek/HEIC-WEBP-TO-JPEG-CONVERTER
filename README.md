@@ -33,3 +33,6 @@ The application is designed to work without an internet connection. No backend, 
 ## Notes
 
 This is the first functional MVP. Native Android image decoding is used where available. HEIC decoding behavior on Android 8/8.1 can still depend on the device's platform codec support.
+
+## CATATAN PENGEMBANGAN
+100 persen dibuat pakai AI, tidak 100 persen sempurna ketika masuk Android Studio, banyak revisinya ini.
