@@ -1,4 +1,4 @@
-# PixConverter v1.0.0
+# PixConverter v1.0.2
 
 Offline Android image converter for:
 
@@ -30,9 +30,14 @@ The application is designed to work without an internet connection. No backend, 
 - Java/Kotlin JVM 17
 - Gradle 8.7
 
+## Release build
+
+Build the distributable APK with the `release` variant in Android Studio. The
+release configuration enables R8 code minification and Android resource
+shrinking; do not distribute the debug APK because it retains developer
+metadata and unused code. The extended Material icon library was also removed
+in favour of the much smaller core icon set and platform icons.
+
 ## Notes
 
 This is the first functional MVP. Native Android image decoding is used where available. HEIC decoding behavior on Android 8/8.1 can still depend on the device's platform codec support.
-
-## CATATAN PENGEMBANGAN
-100 persen dibuat pakai AI, tidak 100 persen sempurna ketika masuk Android Studio, banyak revisinya ini.

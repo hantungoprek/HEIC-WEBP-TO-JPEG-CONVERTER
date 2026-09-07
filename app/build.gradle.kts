@@ -12,8 +12,8 @@ android {
         applicationId = "com.pixconverter"
         minSdk = 26
         targetSdk = 35
-        versionCode = 2
-        versionName = "1.0.1"
+        versionCode = 3
+        versionName = "1.0.2"
     }
 
     compileOptions {
@@ -29,6 +29,19 @@ android {
         compose = true
     }
 
+    buildTypes {
+        release {
+            // The debug APK is intentionally bulky.  Release builds remove unused
+            // bytecode and Android resources before being distributed.
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -42,7 +55,8 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3:1.3.1")
-    implementation("androidx.compose.material:material-icons-extended")
+    // Core contains the small set of navigation controls used by the UI.
+    implementation("androidx.compose.material:material-icons-core")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.6")
     implementation("androidx.exifinterface:exifinterface:1.3.7")
 

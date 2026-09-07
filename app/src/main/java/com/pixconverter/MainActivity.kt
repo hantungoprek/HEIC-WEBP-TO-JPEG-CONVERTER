@@ -1,10 +1,8 @@
 package com.pixconverter
 
 import android.Manifest
-import android.app.Activity
 import android.content.ContentResolver
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -38,12 +36,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.PhotoLibrary
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.History
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DrawerValue
@@ -55,7 +48,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
@@ -72,6 +64,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -174,7 +167,7 @@ fun PixConverterApp() {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(
-                                Icons.Default.PhotoLibrary,
+                                painterResource(android.R.drawable.ic_menu_gallery),
                                 contentDescription = null,
                                 tint = Teal,
                                 modifier = Modifier.size(48.dp)
@@ -195,7 +188,12 @@ fun PixConverterApp() {
                                 darkTheme = !darkTheme
                                 prefs.edit().putBoolean("dark_theme", darkTheme).apply()
                             },
-                            icon = { Icon(Icons.Default.DarkMode, contentDescription = null) },
+                            icon = {
+                                Icon(
+                                    painterResource(android.R.drawable.ic_menu_manage),
+                                    contentDescription = null
+                                )
+                            },
                             badge = {
                                 Switch(
                                     checked = darkTheme,
@@ -209,7 +207,7 @@ fun PixConverterApp() {
                         )
                         Spacer(Modifier.weight(1f))
                         Text(
-                            "v1.0.0",
+                            "v1.0.2",
                             modifier = Modifier
                                 .align(Alignment.CenterHorizontally)
                                 .padding(bottom = 18.dp),
@@ -399,7 +397,11 @@ private fun MainContent(
         if (resultText != null) {
             item {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(Icons.Default.CheckCircle, contentDescription = null, tint = Teal)
+                    Icon(
+                        painterResource(android.R.drawable.checkbox_on_background),
+                        contentDescription = null,
+                        tint = Teal
+                    )
                     Spacer(Modifier.width(8.dp))
                     Text(resultText)
                 }
@@ -409,7 +411,11 @@ private fun MainContent(
         item {
             Spacer(Modifier.height(4.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(Icons.Default.History, contentDescription = null, tint = Teal)
+                Icon(
+                    painterResource(android.R.drawable.ic_menu_recent_history),
+                    contentDescription = null,
+                    tint = Teal
+                )
                 Spacer(Modifier.width(8.dp))
                 Text(
                     "HISTORY ($historyCount)",
